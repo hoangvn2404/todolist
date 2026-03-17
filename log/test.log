@@ -1,0 +1,387 @@
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "todos"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "todos" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar NOT NULL, "completed" boolean DEFAULT 0 NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20260317185109)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-03-17 18:53:14.658793', '2026-03-17 18:53:14.658794') RETURNING "key"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('schema_sha1', '7c41cedf8b8a09afeb355ca515818586b89ee902', '2026-03-17 18:53:14.662797', '2026-03-17 18:53:14.662797') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.0ms)[0m  [1m[31mDELETE FROM "todos";
+INSERT INTO "todos" ("id", "title", "completed", "created_at", "updated_at") VALUES (980190962, 'MyString', 0, '2026-03-17 18:53:49.403334', '2026-03-17 18:53:49.403334'), (298486374, 'MyString', 0, '2026-03-17 18:53:49.403334', '2026-03-17 18:53:49.403334')[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------------------------
+TodosControllerTest: test_PATCH_/todos/:id_toggles_completed_status
+-------------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.2ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Test Todo"], ["completed", 0], ["created_at", "2026-03-17 18:53:49.430446"], ["updated_at", "2026-03-17 18:53:49.430446"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PATCH "/todos/980190963" for 127.0.0.1 at 2026-03-18 01:53:49 +0700
+Processing by TodosController#update as HTML
+  Parameters: {"todo" => {"completed" => "true"}, "id" => "980190963"}
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Update (0.1ms)[0m  [1m[33mUPDATE "todos" SET "completed" = ?, "updated_at" = ? WHERE "todos"."id" = ?[0m  [["completed", 1], ["updated_at", "2026-03-17 18:53:49.531365"], ["id", 980190963]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/todos
+Completed 303 See Other in 19ms (ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 1.0ms)
+  [1m[36mTodo Load (0.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------------
+TodosControllerTest: test_DELETE_/todos/:id_removes_the_todo
+------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Test Todo"], ["completed", 0], ["created_at", "2026-03-17 18:53:49.536028"], ["updated_at", "2026-03-17 18:53:49.536028"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+Started DELETE "/todos/980190963" for 127.0.0.1 at 2026-03-18 01:53:49 +0700
+Processing by TodosController#destroy as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mTodo Load (0.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Destroy (0.1ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = ?[0m  [["id", 980190963]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/todos
+Completed 303 See Other in 1ms (ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------------------------------
+TodosControllerTest: test_POST_/todos_with_blank_title_re-renders_with_errors
+-----------------------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+Started POST "/todos" for 127.0.0.1 at 2026-03-18 01:53:49 +0700
+Processing by TodosController#create as HTML
+  Parameters: {"todo" => {"title" => ""}}
+  Rendering layout layouts/application.html.erb
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos" ORDER BY "todos"."created_at" DESC[0m
+  [1m[36mCACHE Todo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  Rendered todos/index.html.erb within layouts/application (Duration: 2.2ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | GC: 0.7ms)
+Completed 422 Unprocessable Content in 19ms (Views: 17.5ms | ActiveRecord: 0.6ms (2 queries, 1 cached) | GC: 1.2ms)
+  [1m[36mCACHE Todo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------
+TodosControllerTest: test_GET_/todos_renders_the_todo_list
+----------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Test Todo"], ["completed", 0], ["created_at", "2026-03-17 18:53:49.559799"], ["updated_at", "2026-03-17 18:53:49.559799"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/todos" for 127.0.0.1 at 2026-03-18 01:53:49 +0700
+Processing by TodosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" ORDER BY "todos"."created_at" DESC[0m
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  Rendered todos/index.html.erb within layouts/application (Duration: 2.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------------------------
+TodosControllerTest: test_filter_param_active_returns_only_active_todos
+-----------------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Active"], ["completed", 0], ["created_at", "2026-03-17 18:53:49.569094"], ["updated_at", "2026-03-17 18:53:49.569094"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Completed"], ["completed", 1], ["created_at", "2026-03-17 18:53:49.571947"], ["updated_at", "2026-03-17 18:53:49.571947"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/todos?filter=active" for 127.0.0.1 at 2026-03-18 01:53:49 +0700
+Processing by TodosController#index as HTML
+  Parameters: {"filter" => "active"}
+  Rendering layout layouts/application.html.erb
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."completed" = ? ORDER BY "todos"."created_at" DESC[0m  [["completed", 0]]
+  [1m[36mTodo Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos" WHERE "todos"."completed" = ?[0m  [["completed", 0]]
+  Rendered todos/index.html.erb within layouts/application (Duration: 3.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.3ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------------------------------------
+TodosControllerTest: test_POST_/todos_with_valid_title_creates_a_todo_and_redirects
+-----------------------------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+Started POST "/todos" for 127.0.0.1 at 2026-03-18 01:53:49 +0700
+Processing by TodosController#create as HTML
+  Parameters: {"todo" => {"title" => "New Todo"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "New Todo"], ["completed", 0], ["created_at", "2026-03-17 18:53:49.588079"], ["updated_at", "2026-03-17 18:53:49.588079"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/todos
+Completed 303 See Other in 2ms (ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------------------------------
+TodosControllerTest: test_filter_param_completed_returns_only_completed_todos
+-----------------------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Active"], ["completed", 0], ["created_at", "2026-03-17 18:53:49.591926"], ["updated_at", "2026-03-17 18:53:49.591926"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.0ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Completed"], ["completed", 1], ["created_at", "2026-03-17 18:53:49.592166"], ["updated_at", "2026-03-17 18:53:49.592166"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/todos?filter=completed" for 127.0.0.1 at 2026-03-18 01:53:49 +0700
+Processing by TodosController#index as HTML
+  Parameters: {"filter" => "completed"}
+  Rendering layout layouts/application.html.erb
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."completed" = ? ORDER BY "todos"."created_at" DESC[0m  [["completed", 1]]
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos" WHERE "todos"."completed" = ?[0m  [["completed", 1]]
+  Rendered todos/index.html.erb within layouts/application (Duration: 3.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------
+TodoTest: test_completed_scope_returns_completed_todos
+------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.0ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Completed"], ["completed", 1], ["created_at", "2026-03-17 18:53:49.597494"], ["updated_at", "2026-03-17 18:53:49.597494"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.0ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Active"], ["completed", 0], ["created_at", "2026-03-17 18:53:49.600169"], ["updated_at", "2026-03-17 18:53:49.600169"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTodo Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "todos" WHERE "todos"."completed" = ? AND "todos"."id" = ? LIMIT ?[0m  [["completed", 1], ["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTodo Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "todos" WHERE "todos"."completed" = ? AND "todos"."id" = ? LIMIT ?[0m  [["completed", 1], ["id", 980190964], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+TodoTest: test_todo_requires_a_title
+------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------
+TodoTest: test_active_scope_returns_active_todos
+------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.0ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Completed"], ["completed", 1], ["created_at", "2026-03-17 18:53:49.602105"], ["updated_at", "2026-03-17 18:53:49.602105"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Active"], ["completed", 0], ["created_at", "2026-03-17 18:53:49.602322"], ["updated_at", "2026-03-17 18:53:49.602322"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTodo Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "todos" WHERE "todos"."completed" = ? AND "todos"."id" = ? LIMIT ?[0m  [["completed", 0], ["id", 980190964], ["LIMIT", 1]]
+  [1m[36mTodo Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "todos" WHERE "todos"."completed" = ? AND "todos"."id" = ? LIMIT ?[0m  [["completed", 0], ["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------
+TodoTest: test_todo_defaults_completed_to_false
+-----------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "schema_sha1"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mFixtures Load (0.0ms)[0m  [1m[31mDELETE FROM "todos"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+----------------------------------------------------------
+TodosControllerTest: test_GET_/todos_renders_the_todo_list
+----------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Test Todo"], ["completed", 0], ["created_at", "2026-03-17 18:54:01.261752"], ["updated_at", "2026-03-17 18:54:01.261752"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/todos" for 127.0.0.1 at 2026-03-18 01:54:01 +0700
+Processing by TodosController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos" ORDER BY "todos"."created_at" DESC[0m
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  Rendered todos/index.html.erb within layouts/application (Duration: 2.5ms | GC: 0.9ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.1ms | GC: 7.3ms)
+Completed 200 OK in 26ms (Views: 16.1ms | ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 11.5ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------------
+TodosControllerTest: test_DELETE_/todos/:id_removes_the_todo
+------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Test Todo"], ["completed", 0], ["created_at", "2026-03-17 18:54:01.324952"], ["updated_at", "2026-03-17 18:54:01.324952"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+Started DELETE "/todos/980190963" for 127.0.0.1 at 2026-03-18 01:54:01 +0700
+Processing by TodosController#destroy as HTML
+  Parameters: {"id" => "980190963"}
+  [1m[36mTodo Load (0.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Destroy (0.0ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = ?[0m  [["id", 980190963]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/todos
+Completed 303 See Other in 1ms (ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------------------------------------
+TodosControllerTest: test_POST_/todos_with_valid_title_creates_a_todo_and_redirects
+-----------------------------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+Started POST "/todos" for 127.0.0.1 at 2026-03-18 01:54:01 +0700
+Processing by TodosController#create as HTML
+  Parameters: {"todo" => {"title" => "New Todo"}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "New Todo"], ["completed", 0], ["created_at", "2026-03-17 18:54:01.331403"], ["updated_at", "2026-03-17 18:54:01.331403"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/todos
+Completed 303 See Other in 1ms (ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-------------------------------------------------------------------
+TodosControllerTest: test_PATCH_/todos/:id_toggles_completed_status
+-------------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Test Todo"], ["completed", 0], ["created_at", "2026-03-17 18:54:01.332927"], ["updated_at", "2026-03-17 18:54:01.332927"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PATCH "/todos/980190963" for 127.0.0.1 at 2026-03-18 01:54:01 +0700
+Processing by TodosController#update as HTML
+  Parameters: {"todo" => {"completed" => "true"}, "id" => "980190963"}
+  [1m[36mTodo Load (0.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Update (0.1ms)[0m  [1m[33mUPDATE "todos" SET "completed" = ?, "updated_at" = ? WHERE "todos"."id" = ?[0m  [["completed", 1], ["updated_at", "2026-03-17 18:54:01.335065"], ["id", 980190963]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/todos
+Completed 303 See Other in 2ms (ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 0.1ms)
+  [1m[36mTodo Load (0.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = ? LIMIT ?[0m  [["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------------------------------
+TodosControllerTest: test_POST_/todos_with_blank_title_re-renders_with_errors
+-----------------------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTodo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+Started POST "/todos" for 127.0.0.1 at 2026-03-18 01:54:01 +0700
+Processing by TodosController#create as HTML
+  Parameters: {"todo" => {"title" => ""}}
+  Rendering layout layouts/application.html.erb
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" ORDER BY "todos"."created_at" DESC[0m
+  [1m[36mCACHE Todo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  Rendered todos/index.html.erb within layouts/application (Duration: 3.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | GC: 0.2ms)
+Completed 422 Unprocessable Content in 5ms (Views: 4.7ms | ActiveRecord: 0.0ms (2 queries, 1 cached) | GC: 0.2ms)
+  [1m[36mCACHE Todo Count (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------------------------
+TodosControllerTest: test_filter_param_active_returns_only_active_todos
+-----------------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.2ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Active"], ["completed", 0], ["created_at", "2026-03-17 18:54:01.346496"], ["updated_at", "2026-03-17 18:54:01.346496"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Completed"], ["completed", 1], ["created_at", "2026-03-17 18:54:01.354853"], ["updated_at", "2026-03-17 18:54:01.354853"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/todos?filter=active" for 127.0.0.1 at 2026-03-18 01:54:01 +0700
+Processing by TodosController#index as HTML
+  Parameters: {"filter" => "active"}
+  Rendering layout layouts/application.html.erb
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."completed" = ? ORDER BY "todos"."created_at" DESC[0m  [["completed", 0]]
+  [1m[36mTodo Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos" WHERE "todos"."completed" = ?[0m  [["completed", 0]]
+  Rendered todos/index.html.erb within layouts/application (Duration: 3.3ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.1ms)
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 0.1ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------------------------------------
+TodosControllerTest: test_filter_param_completed_returns_only_completed_todos
+-----------------------------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Active"], ["completed", 0], ["created_at", "2026-03-17 18:54:01.368461"], ["updated_at", "2026-03-17 18:54:01.368461"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.0ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Completed"], ["completed", 1], ["created_at", "2026-03-17 18:54:01.368806"], ["updated_at", "2026-03-17 18:54:01.368806"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/todos?filter=completed" for 127.0.0.1 at 2026-03-18 01:54:01 +0700
+Processing by TodosController#index as HTML
+  Parameters: {"filter" => "completed"}
+  Rendering layout layouts/application.html.erb
+  Rendering todos/index.html.erb within layouts/application
+  [1m[36mTodo Load (0.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."completed" = ? ORDER BY "todos"."created_at" DESC[0m  [["completed", 1]]
+  [1m[36mTodo Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos" WHERE "todos"."completed" = ?[0m  [["completed", 1]]
+  Rendered todos/index.html.erb within layouts/application (Duration: 5.7ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | GC: 0.1ms)
+Completed 200 OK in 7ms (Views: 6.9ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.1ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------------
+TodoTest: test_completed_scope_returns_completed_todos
+------------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Completed"], ["completed", 1], ["created_at", "2026-03-17 18:54:01.379945"], ["updated_at", "2026-03-17 18:54:01.379945"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Active"], ["completed", 0], ["created_at", "2026-03-17 18:54:01.380705"], ["updated_at", "2026-03-17 18:54:01.380705"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTodo Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "todos" WHERE "todos"."completed" = ? AND "todos"."id" = ? LIMIT ?[0m  [["completed", 1], ["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTodo Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "todos" WHERE "todos"."completed" = ? AND "todos"."id" = ? LIMIT ?[0m  [["completed", 1], ["id", 980190964], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------------------
+TodoTest: test_active_scope_returns_active_todos
+------------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Completed"], ["completed", 1], ["created_at", "2026-03-17 18:54:01.382298"], ["updated_at", "2026-03-17 18:54:01.382298"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mTodo Create (0.2ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "created_at", "updated_at") VALUES (?, ?, ?, ?) RETURNING "id"[0m  [["title", "Active"], ["completed", 0], ["created_at", "2026-03-17 18:54:01.384876"], ["updated_at", "2026-03-17 18:54:01.384876"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTodo Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "todos" WHERE "todos"."completed" = ? AND "todos"."id" = ? LIMIT ?[0m  [["completed", 0], ["id", 980190964], ["LIMIT", 1]]
+  [1m[36mTodo Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "todos" WHERE "todos"."completed" = ? AND "todos"."id" = ? LIMIT ?[0m  [["completed", 0], ["id", 980190963], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+-----------------------------------------------
+TodoTest: test_todo_defaults_completed_to_false
+-----------------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+------------------------------------
+TodoTest: test_todo_requires_a_title
+------------------------------------
+[dotenv] Saved a snapshot of [32mENV[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m

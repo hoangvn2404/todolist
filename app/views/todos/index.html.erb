@@ -1,0 +1,44 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<div class="todos-container" data-controller="todos">
+  <h1>Todos</h1>
+
+  <%= form_with model: Todo.new, url: todos_path, class: "todo-form" do |f| %>
+    <%= f.text_field :title, placeholder: "What needs to be done?",
+        autofocus: true, required: true,
+        data: { action: "keydown.enter->todos#submitForm" } %>
+    <%= f.submit "Add" %>
+  <% end %>
+
+  <nav class="todo-filters" data-controller="filter">
+    <%= link_to "All", todos_path,
+        class: "filter-link #{params[:filter].blank? ? 'active' : ''}" %>
+    <%= link_to "Active", todos_path(filter: "active"),
+        class: "filter-link #{params[:filter] == 'active' ? 'active' : ''}" %>
+    <%= link_to "Completed", todos_path(filter: "completed"),
+        class: "filter-link #{params[:filter] == 'completed' ? 'active' : ''}" %>
+  </nav>
+
+  <ul class="todo-list" id="todo-list">
+    <% @todos.each do |todo| %>
+      <li id="<%= dom_id(todo) %>" class="todo-item <%= 'completed' if todo.completed? %>">
+        <%= button_to todo_path(todo, filter: params[:filter]),
+            method: :patch, class: "todo-toggle",
+            params: { todo: { completed: !todo.completed? } } do %>
+          <span class="checkbox"><%= todo.completed? ? "☑" : "☐" %></span>
+        <% end %>
+
+        <span class="todo-title"><%= todo.title %></span>
+
+        <%= button_to todo_path(todo, filter: params[:filter]),
+            method: :delete, class: "todo-delete" do %>
+          ✕
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="todo-footer">
+    <span><%= @todos.count %> item(s)</span>
+  </div>
+</div>
