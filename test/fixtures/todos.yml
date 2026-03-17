@@ -1,0 +1,11 @@
+one:
+  title: "Buy groceries"
+  completed: false
+
+two:
+  title: "Walk the dog"
+  completed: true
+
+three:
+  title: "Read a book"
+  completed: false

@@ -1,0 +1,60 @@
+<div class="w-full max-w-lg mx-auto" data-controller="todo-form">
+  <h1 class="text-3xl font-bold mb-8">Todos</h1>
+
+  <%# Add form %>
+  <%= form_with model: @todo, url: todos_path(filter: @filter), class: "flex gap-2 mb-6" do |f| %>
+    <%= f.text_field :title,
+        placeholder: "What needs to be done?",
+        class: "flex-1 rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500",
+        autofocus: true,
+        data: { todo_form_target: "input", action: "keydown.enter->todo-form#submit" } %>
+    <%= f.submit "Add",
+        class: "rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer" %>
+  <% end %>
+
+  <%# Filters %>
+  <nav class="flex gap-4 mb-6 text-sm">
+    <% %w[all active completed].each do |filter| %>
+      <%= link_to filter.capitalize,
+          todos_path(filter: filter),
+          class: "px-3 py-1 rounded-full #{@filter == filter ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}" %>
+    <% end %>
+  </nav>
+
+  <%# Todo list %>
+  <% if @todos.any? %>
+    <ul class="space-y-2">
+      <% @todos.each do |todo| %>
+        <li id="<%= dom_id(todo) %>" class="flex items-center gap-3 rounded-lg border border-gray-200 px-4 py-3 group">
+          <%# Toggle completed %>
+          <%= button_to todo_path(todo, filter: @filter),
+              method: :patch,
+              params: { todo: { completed: !todo.completed } },
+              class: "flex items-center justify-center w-6 h-6 rounded-full border-2 #{todo.completed? ? 'border-green-500 bg-green-500' : 'border-gray-300 hover:border-green-400'} cursor-pointer" do %>
+            <% if todo.completed? %>
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+              </svg>
+            <% end %>
+          <% end %>
+
+          <span class="flex-1 #{'line-through text-gray-400' if todo.completed?}">
+            <%= todo.title %>
+          </span>
+
+          <%# Delete %>
+          <%= button_to todo_path(todo, filter: @filter),
+              method: :delete,
+              class: "text-red-400 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer",
+              data: { turbo_confirm: "Delete this todo?" } do %>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-gray-400 text-center py-8">No todos yet. Add one above!</p>
+  <% end %>
+</div>
