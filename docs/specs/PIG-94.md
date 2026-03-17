@@ -21,13 +21,7 @@ Key flags:
 - `--skip-git` — avoids reinitialising git since the repo already exists
 - `--force` — overwrites existing files like README.md with Rails defaults
 
-### 2. Install Dependencies
-
-```bash
-bundle install
-```
-
-### 3. Configure the Welcome Page
+### 2. Configure the Welcome Page
 
 Create a `PagesController` with a `home` action and set it as the root route.
 
@@ -55,7 +49,7 @@ Create the welcome view at `app/views/pages/home.html.erb`:
 </div>
 ```
 
-### 4. Run Database Migrations
+### 3. Run Database Migrations
 
 ```bash
 bin/rails db:prepare
@@ -63,7 +57,7 @@ bin/rails db:prepare
 
 This creates the SQLite database files and generates `db/schema.rb`.
 
-### 5. Update .gitignore
+### 4. Update .gitignore
 
 Ensure the `.gitignore` includes standard Rails ignores. The generated `.gitignore` from `rails new` should cover this, but verify these entries exist:
 
@@ -90,24 +84,19 @@ SQLite database files must NOT be committed — only `db/schema.rb`.
    rails new . --css tailwind --database=sqlite3 --skip-git --force
    ```
 
-3. **Install gems**:
-   ```bash
-   bundle install
-   ```
-
-4. **Generate the Pages controller**:
+3. **Generate the Pages controller**:
    ```bash
    bin/rails generate controller Pages home --skip-routes
    ```
 
-5. **Set the root route** — Edit `config/routes.rb`:
+4. **Set the root route** — Edit `config/routes.rb`:
    ```ruby
    Rails.application.routes.draw do
      root "pages#home"
    end
    ```
 
-6. **Create the welcome view** — Edit `app/views/pages/home.html.erb`:
+5. **Create the welcome view** — Edit `app/views/pages/home.html.erb`:
    ```erb
    <div class="min-h-screen flex items-center justify-center bg-gray-50">
      <div class="text-center">
@@ -117,24 +106,23 @@ SQLite database files must NOT be committed — only `db/schema.rb`.
    </div>
    ```
 
-7. **Prepare the database**:
+6. **Prepare the database**:
    ```bash
    bin/rails db:prepare
    ```
 
-8. **Verify the app boots**:
+7. **Verify the app boots**:
    ```bash
    bin/rails server
    ```
    Visit `http://localhost:3000` — should display the Todolist welcome page.
 
-9. **Commit all generated files** including `db/schema.rb` but excluding `*.sqlite3` files.
+8. **Commit all generated files** including `db/schema.rb` but excluding `*.sqlite3` files.
 
 ## Test Plan
 
 - [ ] `ruby -v` returns >= 3.2
 - [ ] `rails -v` returns >= 8.0
-- [ ] `bundle install` completes without errors
 - [ ] `bin/rails db:prepare` runs successfully and `db/schema.rb` exists
 - [ ] `bin/rails server` starts without errors
 - [ ] Visiting `http://localhost:3000` shows the Todolist welcome page
