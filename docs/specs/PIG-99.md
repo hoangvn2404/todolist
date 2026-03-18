@@ -39,7 +39,7 @@ gem "tailwindcss-rails"
 
 Tailwind config and application stylesheet will be generated at:
 - `app/assets/stylesheets/application.tailwind.css`
-- `config/tailwind.config.js` (if applicable for Rails 8 + tailwindcss-rails v3)
+- `config/tailwind.config.js`
 
 ### SQLite Configuration
 
@@ -84,7 +84,6 @@ gem install rails -v "~> 8.0"
 ### Step 2: Generate the Rails Application
 
 ```bash
-cd /Users/hoang/code/symphony-workspaces/PIG-99
 rails new . --css=tailwind --database=sqlite3 --skip-git --force
 ```
 
